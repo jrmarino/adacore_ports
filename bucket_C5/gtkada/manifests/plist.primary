@@ -1,0 +1,2 @@
+lib/libgtkada.so.%%SOVERSION%%
+lib/gtkada/gtkada.relocatable/gtkada/libgtkada.so.%%SOVERSION%%

@@ -1,0 +1,14 @@
+--- configure.orig	2023-07-26 12:38:56 UTC
++++ configure
+@@ -2313,6 +2313,11 @@ fi
+       ac_GNATLIB=`cd $ac_GNATDIR; ls libgnat-*.dll | sed 's,lib,,;s,.dll,,'`
+       OS_SPECIFIC_LINK_OPTIONS=-Wl,-L$ac_GNATDIR,-l$ac_GNATLIB
+       ;;
++   *dragonfly*|*bsd*)
++      if test x$CAN_BUILD_SHARED = xyes ; then
++         BUILD_SHARED=yes
++      fi
++      ;;
+    *darwin*)
+       SO_EXT=.dylib
+       NEED_OBJECTIVE_C=yes
