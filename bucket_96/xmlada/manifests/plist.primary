@@ -1,0 +1,5 @@
+lib/libxmlada_dom.so.%%LIBVER%%
+lib/libxmlada_input_sources.so.%%LIBVER%%
+lib/libxmlada_sax.so.%%LIBVER%%
+lib/libxmlada_schema.so.%%LIBVER%%
+lib/libxmlada_unicode.so.%%LIBVER%%
