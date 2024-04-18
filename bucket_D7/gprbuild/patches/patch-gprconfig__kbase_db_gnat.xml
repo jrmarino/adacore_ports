@@ -1,0 +1,11 @@
+--- gprconfig_kbase/db/gnat.xml.orig	2023-09-06 15:34:53 UTC
++++ gprconfig_kbase/db/gnat.xml
+@@ -10,7 +10,7 @@
+    &filter_gnat;
+    <config>
+    package Compiler is
+-      for Driver                   ("Ada") use "${PATH(ada)}${PREFIX(ada)}gcc";
++      for Driver                   ("Ada") use "${PATH(ada)}ada";
+       for Language_Kind            ("Ada") use "unit_based";
+       for Dependency_Kind          ("Ada") use "ALI_File";
+       for Leading_Required_Switches        ("Ada") use

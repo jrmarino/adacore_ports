@@ -1,0 +1,53 @@
+--- gprconfig_kbase/db/targetset.xml.orig	2023-09-06 15:34:53 UTC
++++ gprconfig_kbase/db/targetset.xml
+@@ -102,9 +102,10 @@
+   </targetset>
+ 
+   <!-- x86-solaris -->
+-  <targetset canonical="x86-solaris">
+-    <target>x86-solaris</target>
+-    <target>i.86-(pc-)?solaris.*</target>
++  <targetset canonical="x86_64-solaris">
++    <target>x86_64-solaris</target>
++    <target>x86_64-.*solaris.*</target>
++    <target>i.86-.*solaris.*</target>
+   </targetset>
+ 
+   <!-- x86-windows (mingw) -->
+@@ -226,6 +227,9 @@
+     <target>x86_64-freebsd</target>
+     <target>x86_64-.*freebsd.*</target>
+     <target>amd64-.*freebsd.*</target>
++    <target>x86_64-midnightbsd</target>
++    <target>x86_64-.*midnightbsd.*</target>
++    <target>amd64-.*midnightbsd.*</target>
+   </targetset>
+ 
+   <!-- x86 NetBSD -->
+@@ -274,11 +278,23 @@
+     <target>riscv64-.*netbsd.*</target>
+   </targetset>
+ 
+-  <!-- x86_64 DragonflyBSD -->
++  <!-- x86_64 DragonFly -->
+   <targetset canonical="x86_64-dragonfly">
+     <target>x86_64-dragonfly</target>
+-    <target>x86_64-.*dragonlfy.*</target>
+-    <target>amd64-.*dragonfly.*</target>
++    <target>x86_64-.*dragonfly.*</target>
++  </targetset>
++
++  <!-- x86_64 OpenBSD -->
++  <targetset canonical="x86_64-openbsd">
++    <target>x86_64-openbsd</target>
++    <target>x86_64-.*openbsd.*</target>
++    <target>amd64-.*openbsd.*</target>
++  </targetset>
++
++  <!-- x86_64 MidnightBSD -->
++  <targetset canonical="x86_64-midnightbsd">
++    <target>x86_64-.*midnightbsd.*</target>
++    <target>amd64-.*midnightbsd.*</target>
+   </targetset>
+ 
+ <!-- Cross Ports -->

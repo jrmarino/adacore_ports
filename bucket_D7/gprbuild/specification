@@ -1,0 +1,80 @@
+DEF[PORTVERSION]=	24.0.0
+DEF[THIS_RELEASE]=	v${PORTVERSION}
+DEF[XML_RELEASE]=	v24.0.0
+DEF[KBASE_RELEASE]=	v24.0.0
+DEF[JQUERY]=		EXTRACT_INFO(LATEST_JQUERY)
+DEF[UNDERSCORE]=	EXTRACT_INFO(SPHINX_UNDERSCORE)
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		gprbuild
+VERSION=		${PORTVERSION}
+EPOCH=			1
+KEYWORDS=		devel ada
+VARIANTS=		standard
+SDESC[standard]=	Adacore multi-language software build tool
+HOMEPAGE=		https://docs.adacore.com/live/wave/gprbuild/html/gprbuild_ug/gprbuild_ug.html
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main xmlada kbase
+SITES[main]=		GITHUB/AdaCore:gprbuild:${THIS_RELEASE}
+SITES[xmlada]=		GITHUB/AdaCore:xmlada:${XML_RELEASE}
+SITES[kbase]=		GITHUB/AdaCore:gprconfig_kb:${KBASE_RELEASE}:gprconfig_kbase
+DISTFILE[1]=		generated:main
+DISTFILE[2]=		generated:xmlada
+DISTFILE[3]=		generated:kbase
+DF_INDEX=		1 2 3
+
+SPKGS[standard]=	complete primary dev gprlib examples
+
+OPTIONS_AVAILABLE=	none
+OPTIONS_STANDARD=	none
+
+LICENSE=		GPLv3+:primary
+LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/gprbuild.ads
+LICENSE_SCHEME=		solo
+
+BUILD_DEPENDS=		xmlada:dev:standard
+BUILDRUN_DEPENDS=	xmlada:primary:standard
+
+USES=			gmake
+MAKE_ARGS=		prefix={{STAGEDIR}}{{PREFIX}}
+			ENABLE_SHARED=yes
+			BUILD=production
+			PROCESSORS={{MAKE_JOBS_NUMBER}}
+			TARGET={{CONFIGURE_TARGET}}
+INSTALL_REQ_TOOLCHAIN=	yes
+BUILD_TARGET=		all libgpr.build
+INSTALL_TARGET=		install libgpr.install
+PLIST_SUB=		JQUERY=${JQUERY}
+			UNDERSCORE=${UNDERSCORE}
+SOVERSION=		${PORTVERSION}
+# INFO=			primary:gprbuild_ug
+# SET_DEBUGGING_ON=	yes
+
+pre-configure:
+	${RM} ${WRKSRC}/gprconfig_kbase/db/*.orig
+	${FIND} ${WRKSRC}/examples -name '.cvsignore' -delete
+	${REINPLACE_CMD} -e 's|"-gnatwe", ||' ${WRKSRC}/gprbuild.gpr
+	${REINPLACE_CMD} -e 's|make -C|gmake -C|' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' ${WRKSRC}/gpr/gpr.gpr
+
+do-configure:
+	# create bootstrap version of gprbuild
+	${MKDIR} ${WRKDIR}/bootstrap_construction
+	(cd ${WRKDIR}/bootstrap_construction && ${WRKSRC}/bootstrap.sh \
+	  --with-xmlada=${WRKDIR}/xmlada-${XML_RELEASE:S/v//} \
+	  --with-kb=${WRKSRC}/gprconfig_kbase \
+	  --srcdir=${WRKSRC} \
+	  --prefix=${WRKDIR}/bootstrap)
+	# establish setup variables
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} setup)
+
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/doinstall
+	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/gprbuild/*
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gpr/relocatable/gpr/libgpr.so
