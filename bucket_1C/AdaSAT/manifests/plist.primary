@@ -1,0 +1,2 @@
+lib/libadasat.so.%%SOVERSION%%
+lib/adasat.relocatable/libadasat.so.%%SOVERSION%%

@@ -1,0 +1,44 @@
+DEF[PORTVERSION]=	24.0.0
+DEF[RELEASE_TAG]=	v${PORTVERSION}
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		AdaSAT
+VERSION=		${PORTVERSION}
+KEYWORDS=		math ada
+VARIANTS=		standard
+SDESC[standard]=	Implementation of a DPLL-based SAT solver in Ada
+HOMEPAGE=		https://github.com/AdaCore/AdaSAT
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main
+SITES[main]=		GITHUB/AdaCore:AdaSAT:${RELEASE_TAG}
+DISTFILE[1]=		generated:main
+
+SPKGS[standard]=	complete primary dev
+
+OPTIONS_AVAILABLE=	none
+OPTIONS_STANDARD=	none
+
+LICENSE=		APACHE20:primary
+LICENSE_FILE=		APACHE20:{{WRKSRC}}/LICENSE
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/adasat.ads
+LICENSE_SCHEME=		solo
+
+USES=			gprbuild gmake ada:primary
+MAKE_ARGS=		BUILD_MODE=dev
+			PROCESSORS={{MAKE_JOBS_NUMBER}}
+			INSTALL_DIR={{STAGEDIR}}{{PREFIX}}
+BUILD_TARGET=		all-libs
+INSTALL_REQ_TOOLCHAIN=	yes
+SOVERSION=		${PORTVERSION}
+
+pre-configure:
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' ${WRKSRC}/adasat.gpr
+
+post-install:
+	# remove manifests
+	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
+	# strip binaries
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/adasat.relocatable/libadasat.so
