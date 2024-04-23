@@ -1,0 +1,5 @@
+share/examples/gnatcoll/coders/base64-demo
+share/examples/gnatcoll/coders/base64_coder.adb
+share/examples/gnatcoll/coders/base64_coder.gpr
+share/examples/gnatcoll/projects/gpr_sources.adb
+share/examples/gnatcoll/projects/gpr_sources.gpr
