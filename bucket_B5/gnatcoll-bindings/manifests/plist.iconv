@@ -1,0 +1,4 @@
+lib/libgnatcoll_iconv.so.%%SOMAJOR%%
+lib/libgnatcoll_iconv.so.%%SOVERSION%%
+lib/gnatcoll_iconv.relocatable/libgnatcoll_iconv.so.%%SOMAJOR%%
+lib/gnatcoll_iconv.relocatable/libgnatcoll_iconv.so.%%SOVERSION%%

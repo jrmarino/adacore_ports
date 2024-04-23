@@ -1,0 +1,4 @@
+lib/libgnatcoll_readline.so.%%SOMAJOR%%
+lib/libgnatcoll_readline.so.%%SOVERSION%%
+lib/gnatcoll_readline.relocatable/libgnatcoll_readline.so.%%SOMAJOR%%
+lib/gnatcoll_readline.relocatable/libgnatcoll_readline.so.%%SOVERSION%%

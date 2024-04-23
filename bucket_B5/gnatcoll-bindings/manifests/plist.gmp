@@ -1,0 +1,4 @@
+lib/libgnatcoll_gmp.so.%%SOMAJOR%%
+lib/libgnatcoll_gmp.so.%%SOVERSION%%
+lib/gnatcoll_gmp.relocatable/libgnatcoll_gmp.so.%%SOMAJOR%%
+lib/gnatcoll_gmp.relocatable/libgnatcoll_gmp.so.%%SOVERSION%%

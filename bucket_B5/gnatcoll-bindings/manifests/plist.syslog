@@ -1,0 +1,4 @@
+lib/libgnatcoll_syslog.so.%%SOMAJOR%%
+lib/libgnatcoll_syslog.so.%%SOVERSION%%
+lib/gnatcoll_syslog.relocatable/libgnatcoll_syslog.so.%%SOMAJOR%%
+lib/gnatcoll_syslog.relocatable/libgnatcoll_syslog.so.%%SOVERSION%%
