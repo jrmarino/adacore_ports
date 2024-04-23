@@ -2,9 +2,9 @@ https://github.com/AdaCore/gnatcoll-bindings/issues/18
 
 Fixes build with python 3.11+
 
---- python/python_support.c.orig	2022-09-22 17:07:30 UTC
+--- python/python_support.c.orig	2023-01-04 08:36:46 UTC
 +++ python/python_support.c
-@@ -814,13 +814,13 @@ PyAPI_FUNC(PyObject *) PyFile_FromString
+@@ -813,13 +813,13 @@ PyAPI_FUNC(PyObject *) PyFile_FromString
  PyCodeObject*
  ada_pyframe_get_code (PyFrameObject* obj)
  {

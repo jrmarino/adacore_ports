@@ -1,0 +1,14 @@
+post-configure patch to generated mains.gpr
+(BSD only)
+
+--- build/mains.gpr.orig	2023-09-12 06:28:39 UTC
++++ build/mains.gpr
+@@ -50,4 +50,8 @@ project Mains is
+       for Switches ("ada") use ("-E");
+    end Binder;
+ 
++   package Linker is
++      for Switches ("ada") use (@LIBS@);
++   end Linker;
++
+ end Mains;
