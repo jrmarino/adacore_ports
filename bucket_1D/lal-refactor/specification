@@ -1,7 +1,7 @@
 # This repo is so new it's not versioned yet, assume year based version
-# 10 JAN 2024
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE]=		b004afc
+# 28 SEP 2023
+DEF[PORTVERSION]=	23.0.1
+DEF[RELEASE]=		0dbcc3d
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		lal-refactor
