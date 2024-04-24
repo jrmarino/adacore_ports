@@ -1,0 +1,11 @@
+--- gnat/gnatdoc.gpr.orig	2023-09-14 13:34:58 UTC
++++ gnat/gnatdoc.gpr
+@@ -40,4 +40,8 @@ project GNATdoc is
+       for Executable ("gnatdoc-driver.adb") use "gnatdoc";
+    end Builder;
+ 
++   package Linker is
++      for Switches ("ada") use (@LIBS@);
++   end Linker;
++
+ end GNATdoc;
