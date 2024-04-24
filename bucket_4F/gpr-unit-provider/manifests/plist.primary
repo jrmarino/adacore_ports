@@ -1,0 +1,2 @@
+lib/libgprunitprovider.so.%%SOVERSION%%
+lib/gpr_unit_provider.relocatable/libgprunitprovider.so.%%SOVERSION%%
