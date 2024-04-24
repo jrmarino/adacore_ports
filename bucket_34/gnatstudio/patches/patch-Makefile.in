@@ -1,0 +1,28 @@
+--- Makefile.in.orig	2023-05-10 09:41:12 UTC
++++ Makefile.in
+@@ -3,17 +3,16 @@ MV              = mv
+ MKDIR           = mkdir -p
+ RMDIR           = rm -rf
+ STRIP           = strip
+-AWK             = @AWK@
++AWK             = /usr/bin/awk
+ PERL            = perl
+-PYTHON          = python
+-INSTALL         = @INSTALL@
+-INSTALL_PROGRAM = @INSTALL_PROGRAM@
+-INSTALL_DATA    = @INSTALL_DATA@
+-GNATCOLL_INSTALL  = @GNATCOLL_INSTALL@
++PYTHON          = $(PYTHON_CMD)
++INSTALL_PROGRAM = $(BSD_INSTALL_PROGRAM)
++INSTALL_DATA    = $(BSD_INSTALL_DATA)
++GNATCOLL_INSTALL=
+ prefix          = @prefix@
+-bindir          = $(prefix)/bin
+-sharedir        = $(prefix)/share
+-examplesdir     = $(prefix)/share/examples/gnatstudio
++bindir          = $(DESTDIR)$(prefix)/bin
++sharedir        = $(DESTDIR)$(prefix)/share
++examplesdir     = $(DESTDIR)$(prefix)/share/examples/gnatstudio
+ 
+ SYS := $(shell gcc -dumpmachine)
+ 

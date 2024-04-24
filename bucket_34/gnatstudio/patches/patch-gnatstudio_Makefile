@@ -1,0 +1,11 @@
+--- gnatstudio/Makefile.orig	2023-05-10 09:41:12 UTC
++++ gnatstudio/Makefile
+@@ -17,7 +17,7 @@ endif
+ 
+ GPRBUILD=gprbuild
+ GPRBUILD_FLAGS=-j0
+-PYTHON=python
++PYTHON=${PYTHON_CMD}
+ 
+ BUILD?=Debug
+ 

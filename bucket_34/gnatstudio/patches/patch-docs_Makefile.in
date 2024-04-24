@@ -1,0 +1,38 @@
+--- docs/Makefile.in.orig	2023-05-10 09:41:12 UTC
++++ docs/Makefile.in
+@@ -1,10 +1,9 @@
+ prefix = @prefix@
+-docdir = $(prefix)/share/doc/gnatstudio
+-sharedir = $(prefix)/share/gnatstudio
++docdir = $(DESTDIR)$(prefix)/share/doc/gnatstudio
++sharedir = $(DESTDIR)$(prefix)/share/gnatstudio
+ 
+ MKDIR = mkdir -p
+-INSTALL = @INSTALL@
+-INSTALL_DATA = @INSTALL_DATA@
++INSTALL_DATA = $(BSD_INSTALL_DATA)
+ CONVERT = convert
+ CP = cp -p
+ 
+@@ -12,17 +11,17 @@ all: ug tutorial pg gnatdoc
+ static:
+ 
+ pg:
+-	make -C programmers_guide html
++	$(MAKE) -C programmers_guide html
+ 
+ ug:
+-	make -C users_guide html latexpdf
++	$(MAKE) -C users_guide html
+ 
+ gnatdoc:
+-	make -C ../gnatdoc/docs/users_guide html latexpdf
++	$(MAKE) -C ../gnatdoc/docs/users_guide html
+ 
+ .PHONY: tutorial
+ tutorial:
+-	make -C tutorial html latexpdf
++	$(MAKE) -C tutorial html
+ 
+ install:
+ 	$(MKDIR) $(docdir)

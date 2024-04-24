@@ -1,0 +1,134 @@
+DEF[PORTVERSION]=	20230501
+# DEF[RELEASE]=		gnatstudio-cr-${PORTVERSION}
+# Need a later snapshot to work with later VSS (27 JUN 2023)
+DEF[RELEASE]=		105b842
+DEF[VERSION_TXT]=	Continuous Release ${PORTVERSION}
+DEF[DATE_TXT]=		27 June 2023
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		gnatstudio
+VERSION=		${PORTVERSION}
+REVISION=		1
+KEYWORDS=		devel
+VARIANTS=		standard
+SDESC[standard]=	Multilanguage IDE for Ada, SPARK, C/C++, and more
+HOMEPAGE=		https://www.adacore.com/gnatpro/toolsuite/gnatstudio
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main
+SITES[main]=		GITHUB/AdaCore:gnatstudio:${RELEASE}
+DISTFILE[1]=		generated:main
+
+SPKGS[standard]=	complete primary docs examples
+
+OPTIONS_AVAILABLE=	DEBUG
+OPTIONS_STANDARD=	DEBUG
+
+LICENSE=		GPLv3+:primary
+LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/gnatstudio/src/gps-main.adb
+LICENSE_SCHEME=		solo
+
+BUILD_DEPENDS=		libadalang:dev:standard
+			libadalang-tools:dev:standard
+			libadalang:tools:standard
+			lal-refactor:dev:standard
+			ada_language_server:dev:standard
+			python-PyGObject:dev:python_used
+			python-Sphinx:single:python_used
+			python-sphinx-rtd-theme:single:python_used
+			clang:compiler:standard
+			gnatcoll-db:dev:standard
+			gnatcoll-bindings:dev:standard
+BUILDRUN_DEPENDS=	gnatcoll-db:sql:standard
+			gnatcoll-db:xref:standard
+			gnatcoll-db:sqlite:standard
+			gnatcoll-db:primary:standard
+			gnatcoll-bindings:python3:standard
+			ada_language_server:primary:standard
+			gtkada:primary:standard
+			python-PyGObject:primary:python_used
+			gmp:shared:standard
+			clang:dynlibs:standard
+RUN_DEPENDS=		librsvg:primary:standard
+			gdb:single:standard
+EXRUN[primary]=		ravensys-gcc:complete:standard
+
+USES=			gprbuild:buildrun gmake pkgconfig zlib
+			python perl:build shebangfix iconv fontconfig
+XORG_COMPONENTS=	x11
+GNOME_COMPONENTS=	gtk3 cairo gdkpixbuf
+
+MUST_CONFIGURE=		gnu
+CONFIGURE_ENV=		AWK=/usr/bin/awk
+CONFIGURE_ARGS=		--with-gtk=3.0
+BUILD_TARGET=		default
+MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
+			PYTHON_CMD={{PYTHON_CMD}}
+			LIBRARY_TYPE=relocatable
+SUB_FILES=		gps
+SUB_LIST=		ADA_PATH={{PREFIX}}/toolchain/ravensys-gcc/bin
+SHEBANG_FILES=		share/support/core/gs_utils/internal/dialogs.py
+
+# note: librsvg2 is needed to display the svg icons in the menu.  Actually
+# needed is lib/gdk-pixbuf-2.0/%%GTK2_VER%%/loaders/libpixbufloader-svg.so ,
+# but it's a variable library needed only at runtime, which is obnoxious so
+# we just request the sole binary to pull in the package which effectively
+# accomplishes what is desired.
+
+[DEBUG].MAKE_ARGS_ON=			BUILD=Debug
+[DEBUG].MAKE_ARGS_OFF=			BUILD=Production
+[DEBUG].MAKEFILE_ON=			WITH_DEBUG=yes
+
+post-extract:
+	${FIND} ${WRKSRC} -type f -name ".cvsignore" -delete
+	${FIND} ${WRKSRC} -type d -empty -delete
+	echo "${DATE_TXT}" > ${WRKSRC}/DATE.txt
+	echo "${VERSION_TXT}" > ${WRKSRC}/VERSION.txt
+
+post-patch:
+	${ECHO} "GNAT_SOURCES=" > ${WRKSRC}/Makefile.gnat
+
+pre-configure:
+	${RM} ${WRKSRC}/share/plug-ins/*.orig
+	${REINPLACE_CMD} -e 's|@PREFIX@|${PREFIX}|g' \
+		${WRKSRC}/gnatstudio/gps.gpr \
+		${WRKSRC}/gnatdoc/gnatdoc.gpr \
+		${WRKSRC}/widgets/widgets.gpr
+	${REINPLACE_CMD} -e '/Gdb_Command/ s|"gdb"|"${PREFIX}/bin/gdb"|' \
+		${WRKSRC}/gvd/src/debugger-base_gdb-gdb_mi.adb \
+		${WRKSRC}/gvd/src/debugger-base_gdb-gdb_cli.adb
+	${REINPLACE_CMD} -i'' -e 's|ISO-8859|ISO8859|' \
+		${WRKSRC}/kernel/src/gps-kernel-charsets.adb \
+		${WRKSRC}/share/support/core/os_utils.py \
+		${WRKSRC}/configure*
+	${REINPLACE_CMD} -e 's|iso-8859|ISO8859|' \
+		${WRKSRC}/cli/src/gps-cli_scripts.adb \
+		${WRKSRC}/cli/src/gnatdoc_main.adb
+	${REINPLACE_CMD} -e 's/relocatable/static/g' \
+		-e '/GPRBUILD_BUILD_TYPE_FLAGS=/ s|FLAGS=|FLAGS=-j${MAKE_JOBS_NUMBER} |' \
+		-e 's| -ws||' \
+		${WRKSRC}/gnatstudio/Makefile
+	${REINPLACE_CMD} -e 's/relocatable/static/g' \
+		${WRKSRC}/testsuite/Makefile
+	${REINPLACE_CMD} -e 's/latexpdf//g' ${WRKSRC}/docs/Makefile.in
+
+do-build:
+	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} all
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} ${BUILD_TARGET}
+
+post-install:
+	${FIND} ${STAGEDIR}${PREFIX} -type f -name ".gitignore" -delete
+	${FIND} ${STAGEDIR}${PREFIX} -type f -name "*.orig" -delete
+	${FIND} ${STAGEDIR}${PREFIX} -type d -empty -delete
+	${FIND} ${STAGEDIR}${PREFIX} -type d -name "__pycache__" | ${XARGS} rm -rf
+	${INSTALL_SCRIPT} ${WRKDIR}/gps ${STAGEDIR}${PREFIX}/bin
+	echo "This is the GPS GPL Edition for Ravenports." \
+		> ${STAGEDIR}${PREFIX}/share/gnatstudio/about.txt
+
+post-install-netbsd:
+	${PAXCTL} +m ${STAGEDIR}${PREFIX}/bin/gnatstudio
