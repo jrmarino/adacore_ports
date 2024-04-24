@@ -1,0 +1,15 @@
+--- regtests/0043_check_mem/test.opt.orig	2023-09-11 14:03:24 UTC
++++ regtests/0043_check_mem/test.opt
+@@ -1,4 +1,12 @@
+ ssl    REQUIRED
+ xmlada REQUIRED
++x86-dragonfly DEAD "no gnatmem"
++x86-freebsd DEAD "no gnatmem"
++x86-openbsd DEAD "no gnatmem"
++x86-netbsd DEAD "no gnatmem"
++x86_64-dragonfly DEAD "no gnatmem"
++x86_64-freebsd DEAD "no gnatmem"
++x86_64-openbsd DEAD "no gnatmem"
++x86_64-netbsd DEAD "no gnatmem"
+ darwin DEAD "no gnatmem"
+ windows-2022  XFAIL investigated under VC15-012

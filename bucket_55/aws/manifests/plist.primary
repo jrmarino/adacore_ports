@@ -1,0 +1,2 @@
+lib/libaws.so.%%SOVERSION%%
+lib/aws.relocatable/libaws.so.%%SOVERSION%%

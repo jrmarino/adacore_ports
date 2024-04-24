@@ -1,0 +1,118 @@
+DEF[PORTVERSION]=	24.0.0
+DEF[RELEASE_TAG]=	v${PORTVERSION}
+DEF[TPARSER_TAG]=	53cff2e
+DEF[ADDL_RPATH]=	{{LOCALBASE}}/lib:{{OPENSSLLIB}}
+DEF[SOVERSION]=		${PORTVERSION}
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		aws
+VERSION=		${PORTVERSION}
+EPOCH=			1
+KEYWORDS=		www ada
+VARIANTS=		standard
+SDESC[standard]=	Adacore Ada Web Server and framework
+HOMEPAGE=		https://github.com/AdaCore/aws
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main tparser
+SITES[main]=		GITHUB/adacore:aws:${RELEASE_TAG}
+SITES[tparser]=		GITHUB/adacore:templates-parser:${TPARSER_TAG}:templates_parser
+DISTFILE[1]=		generated:main
+DISTFILE[2]=		generated:tparser
+DF_INDEX=		1 2
+
+SPKGS[standard]=	complete primary tools dev examples docs
+
+OPTIONS_AVAILABLE=	SHARED IPV6 DEBUG
+OPTIONS_STANDARD=	SHARED IPV6 DEBUG
+OPT_ON[all]=		SHARED
+
+LICENSE=		GPLv3+:primary
+LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/core/aws.ads
+LICENSE_SCHEME=		solo
+
+# removed from freebsd ports
+# FPC_EQUIVALENT=		www/aws
+
+BUILD_DEPENDS=		python-Sphinx:single:python_used
+			python-sphinx-rtd-theme:single:python_used
+			gnatcoll-core:dev:standard
+BUILDRUN_DEPENDS=	gnatcoll-core:primary:standard
+
+EXRUN[tools]=		ssl
+
+USES=			gmake gprbuild python:build shebangfix
+			ssl ada:primary,tools
+SHEBANG_FILES=		tools/awsascb
+INSTALL_REQ_TOOLCHAIN=	yes
+MUST_CONFIGURE=		yes
+SOVERSION=		${SOVERSION}
+CONFIGURE_ARGS=		prefix={{PREFIX}}
+			PROCESSORS={{MAKE_JOBS_NUMBER}}
+			GCC=ada
+			PYTHON=python{{PYTHON_VER}}
+			XMLADA=true
+			SOCKET=openssl
+			LPATH={{OPENSSLLIB}}
+			ZLIB=false
+			ASIS=false
+			CFLAGS=-I{{OPENSSLINC}}
+
+[SHARED].DESCRIPTION=			Build shared libraries in addition to static ones
+[IPV6].DESCRIPTION=			Support IPv6 instead of IPv4
+
+[SHARED].CONFIGURE_ARGS_ON=		ENABLE_SHARED=true
+[SHARED].CONFIGURE_ARGS_OFF=		ENABLE_SHARED=false
+[DEBUG].CONFIGURE_ARGS_ON=		DEBUG=true
+[DEBUG].CONFIGURE_ARGS_OFF=		DEBUG=false
+[IPV6].CONFIGURE_ARGS_ON=		NETLIB=ipv6
+[IPV6].CONFIGURE_ARGS_OFF=		NETLIB=ipv4
+[IPV6].MAKEFILE_ON=			NAME_IP6=
+					NAME_IP4=--
+[IPV6].MAKEFILE_OFF=			NAME_IP6=--
+					NAME_IP4=
+
+pre-configure:
+	${REINPLACE_CMD} \
+		-e 's|@ADDITIONAL_RPATH@|${ADDL_RPATH}|' \
+		-e 's|@SOVERSION@|${SOVERSION}|' \
+		${WRKSRC}/aws.gpr \
+		${WRKSRC}/src/src.gpr \
+		${WRKSRC}/include/include.gpr
+	${REINPLACE_CMD} -e 's|latexpdf||' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's|GPROPTS = |GPROPTS = -v |' ${WRKSRC}/Makefile
+	# Use system xmlada for templates parser
+	${REINPLACE_CMD} -e 's|tp_xmlada|xmlada|' \
+		${WRKSRC}/templates_parser/templates_parser.gpr
+
+do-configure:
+	(cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
+		${MAKE_CMD} setup ${CONFIGURE_ARGS})
+
+do-build:
+	# We cannot use a redefined BUILD_TARGET because MAKE_JOBS_SAFE is set
+	# for PROCESSORS, but that also sets -j for gmake which breaks build
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${MAKE_CMD} ${MAKE_ARGS} build build-doc)
+
+do-test:
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		GPR_PROJECT_PATH="${STAGEDIR}${PREFIX}/share/gpr:${LOCALBASE}/share/gpr" \
+		${MAKE_CMD} ${CONFIGURE_ARGS} run_regtests)
+
+post-install:
+	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
+	${RM} ${STAGEDIR}${PREFIX}/include/aws.relocatable/Makefile
+	${RM} ${STAGEDIR}${PREFIX}/include/aws.static/Makefile
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/gpr \
+		${STAGEDIR}${PREFIX}/share/gps/plug-ins
+	cd ${WRKSRC}/gps && ${INSTALL_DATA} *.xml aws.py \
+		${STAGEDIR}${PREFIX}/share/gps/plug-ins
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/[tw]*
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/a[dw][as][2_r]*
+
+post-install-SHARED-ON:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/aws.relocatable/libaws.so
