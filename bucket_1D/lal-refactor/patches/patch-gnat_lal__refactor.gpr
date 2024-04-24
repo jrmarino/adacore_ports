@@ -1,0 +1,10 @@
+--- gnat/lal_refactor.gpr.orig	2024-01-11 00:56:33 UTC
++++ gnat/lal_refactor.gpr
+@@ -22,6 +22,7 @@ library project LAL_Refactor is
+    for Library_Kind use Library_Type;
+    for Library_Dir use "../lib/" & Library_Type;
+    for Library_Name use "lal-refactor";
++   for Library_Version use "liblal-refactor.so.@SOVERSION@";
+ 
+    for Languages use ("Ada");
+ 
