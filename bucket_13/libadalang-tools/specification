@@ -1,0 +1,63 @@
+DEF[PORTVERSION]=	24.0.0
+DEF[RELEASE]=		v${PORTVERSION}
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		libadalang-tools
+VERSION=		${PORTVERSION}
+EPOCH=			1
+KEYWORDS=		python lang devel
+VARIANTS=		standard
+SDESC[standard]=	Development tools based on libadalang
+HOMEPAGE=		https://github.com/AdaCore/libadalang-tools
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main
+SITES[main]=		GITHUB/AdaCore:libadalang-tools:${RELEASE}
+DISTFILE[1]=		generated:main
+
+SPKGS[standard]=	complete primary dev tools
+
+OPTIONS_AVAILABLE=	none
+OPTIONS_STANDARD=	none
+
+LICENSE=		GPLv3+:primary
+LICENSE_FILE=		GPLv3+:{{WRKSRC}}/LICENSE
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/pp.ads
+LICENSE_SCHEME=		solo
+
+BUILD_DEPENDS=		gmp:static:standard
+			libvss:dev:standard
+			libadalang:dev:standard
+			langkit_support:dev:standard
+			templates-parser:dev:standard
+BUILDRUN_DEPENDS=	libvss:primary:standard
+			AdaSAT:primary:standard
+			libgpr2:primary:standard
+			libadalang:primary:standard
+			templates-parser:primary:standard
+			gmp:shared:standard
+
+EXRUN[dev]=		templates-parser:dev:standard
+			langkit_support:dev:standard
+			libadalang:dev:standard
+			libvss:dev:standard
+EXRUN[tools]=		primary
+
+USES=			gprbuild iconv
+INSTALL_REQ_TOOLCHAIN=	yes
+BUILD_TARGET=		lib bin
+INSTALL_TARGET=		install-bin-strip install-lib
+MAKE_ARGS=		BUILD_MODE=prod
+			PROCESSORS={{MAKE_JOBS_NUMBER}}
+SOVERSION=		${PORTVERSION}
+
+pre-configure:
+	# support soname libraries
+	${REINPLACE_CMD} -e 's|@SOVERSION@|${PORTVERSION}|' \
+		${WRKSRC}/src/lal_tools.gpr
+
+post-install:
+	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lal_tools.relocatable/liblal_tools.so
