@@ -1,0 +1,4 @@
+lib/libgnatcoll_postgres.so.%%SOMAJOR%%
+lib/libgnatcoll_postgres.so.%%SOVERSION%%
+lib/gnatcoll_postgres.relocatable/libgnatcoll_postgres.so.%%SOMAJOR%%
+lib/gnatcoll_postgres.relocatable/libgnatcoll_postgres.so.%%SOVERSION%%

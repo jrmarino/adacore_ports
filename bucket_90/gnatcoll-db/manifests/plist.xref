@@ -1,0 +1,4 @@
+lib/libgnatcoll_xref.so.%%SOMAJOR%%
+lib/libgnatcoll_xref.so.%%SOVERSION%%
+lib/gnatcoll_xref.relocatable/libgnatcoll_xref.so.%%SOMAJOR%%
+lib/gnatcoll_xref.relocatable/libgnatcoll_xref.so.%%SOVERSION%%

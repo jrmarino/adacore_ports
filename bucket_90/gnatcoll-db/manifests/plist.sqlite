@@ -1,0 +1,4 @@
+lib/libgnatcoll_sqlite.so.%%SOMAJOR%%
+lib/libgnatcoll_sqlite.so.%%SOVERSION%%
+lib/gnatcoll_sqlite.relocatable/libgnatcoll_sqlite.so.%%SOMAJOR%%
+lib/gnatcoll_sqlite.relocatable/libgnatcoll_sqlite.so.%%SOVERSION%%
