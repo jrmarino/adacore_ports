@@ -1,5 +1,5 @@
 # manually maintained because rlimit MUST be generated
-DEF[PORTVERSION]=	22.5.0
+DEF[PORTVERSION]=	22.6.0
 DEF[RELEASE_MARK]=	v${PORTVERSION}
 DEF[VER_DIST_INFO]=	${PORTVERSION:R}
 # ------------------------------------------------------------------------
@@ -87,8 +87,8 @@ VOPTS[v12]=		PY311=OFF PY312=ON
 					python-stevedore:single:v12
 					python-packaging:single:v12
 
-BR_DEPS[linux]=		python-ld:single:python_used
-BR_DEPS[linux]=		python-psutils:single:python_used
+BR_DEPS[linux]=		python-distro:single:python_used
+BR_DEPS[linux]=		python-psutil:single:python_used
 
 BUILD_DEPENDS=		python-wheel:single:python_used
 			python-pip:single:python_used
@@ -97,6 +97,7 @@ BUILD_DEPENDS=		python-wheel:single:python_used
 SUB_FILES=		build_rlimit.sh
 SUB_LIST=		PYCMD="{{PYTHON_CMD}}"
 PLIST_SUB=		DIVER=${VER_DIST_INFO}
+			OPSYS={{OPSYS:tl}}
 
 post-extract:
 	# unbelievable.  prebuilt rlimit binaries for like 20 systems.
