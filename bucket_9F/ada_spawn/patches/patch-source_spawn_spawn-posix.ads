@@ -1,4 +1,4 @@
---- source/spawn/spawn-posix.ads.orig	2023-05-18 09:24:48 UTC
+--- source/spawn/spawn-posix.ads.orig	2024-09-24 07:52:06 UTC
 +++ source/spawn/spawn-posix.ads
 @@ -156,7 +156,7 @@ package Spawn.Posix is
       (fd     : Interfaces.C.int;
