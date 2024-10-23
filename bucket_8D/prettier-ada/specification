@@ -1,6 +1,6 @@
 # prettier-ada-25.0w-20240408-16284-src.tar.gz
-DEF[PORTVERSION]=	25.0.0rc
-DEF[SOMAJOR]=		${PORTVERSION:R:R}
+DEF[SOVERSION]=		25.0.0
+DEF[PORTVERSION]=	${SOVERSION}rc
 DEF[RELEASE]=		dd71a76
 # ----------------------------------------------------------------------------
 
@@ -32,11 +32,11 @@ USES=			gmake gprbuild
 INSTALL_REQ_TOOLCHAIN=	yes
 MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
 			BUILD_MODE=prod
-PLIST_SUB=		SOMAJOR=${SOMAJOR}
+SOVERSION=		${SOVERSION}
 
 pre-configure:
 	# support soname libraries
-	${REINPLACE_CMD} -e 's|@SOVERSION@|${SOMAJOR}|' \
+	${REINPLACE_CMD} -e 's|@SOVERSION@|${SOVERSION}|' \
 		${WRKSRC}/prettier_ada.gpr
 
 post-install:

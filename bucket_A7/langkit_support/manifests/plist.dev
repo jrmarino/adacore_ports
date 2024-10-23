@@ -5,6 +5,8 @@ include/langkit_support/langkit_support-adalog-generic_main_support.ads
 include/langkit_support/langkit_support-adalog-logic_var.adb
 include/langkit_support/langkit_support-adalog-logic_var.ads
 include/langkit_support/langkit_support-adalog-main_support.ads
+include/langkit_support/langkit_support-adalog-solver-diagnostics.adb
+include/langkit_support/langkit_support-adalog-solver-diagnostics.ads
 include/langkit_support/langkit_support-adalog-solver.adb
 include/langkit_support/langkit_support-adalog-solver.ads
 include/langkit_support/langkit_support-adalog-solver_interface.adb
@@ -30,6 +32,8 @@ include/langkit_support/langkit_support-generic_api-analysis.adb
 include/langkit_support/langkit_support-generic_api-analysis.ads
 include/langkit_support/langkit_support-generic_api-introspection.adb
 include/langkit_support/langkit_support-generic_api-introspection.ads
+include/langkit_support/langkit_support-generic_api-unparsing.adb
+include/langkit_support/langkit_support-generic_api-unparsing.ads
 include/langkit_support/langkit_support-generic_api.adb
 include/langkit_support/langkit_support-generic_api.ads
 include/langkit_support/langkit_support-generic_bump_ptr.adb
@@ -44,6 +48,7 @@ include/langkit_support/langkit_support-internal-conversions.ads
 include/langkit_support/langkit_support-internal-descriptor.ads
 include/langkit_support/langkit_support-internal-introspection.adb
 include/langkit_support/langkit_support-internal-introspection.ads
+include/langkit_support/langkit_support-internal-unparsing.ads
 include/langkit_support/langkit_support-internal.ads
 include/langkit_support/langkit_support-iterators.adb
 include/langkit_support/langkit_support-iterators.ads
@@ -79,6 +84,7 @@ lib/langkit_support.relocatable/langkit_support-adalog-debug.ali
 lib/langkit_support.relocatable/langkit_support-adalog-generic_main_support.ali
 lib/langkit_support.relocatable/langkit_support-adalog-logic_var.ali
 lib/langkit_support.relocatable/langkit_support-adalog-main_support.ali
+lib/langkit_support.relocatable/langkit_support-adalog-solver-diagnostics.ali
 lib/langkit_support.relocatable/langkit_support-adalog-solver.ali
 lib/langkit_support.relocatable/langkit_support-adalog-solver_interface.ali
 lib/langkit_support.relocatable/langkit_support-adalog.ali
@@ -93,6 +99,7 @@ lib/langkit_support.relocatable/langkit_support-errors.ali
 lib/langkit_support.relocatable/langkit_support-file_readers.ali
 lib/langkit_support.relocatable/langkit_support-generic_api-analysis.ali
 lib/langkit_support.relocatable/langkit_support-generic_api-introspection.ali
+lib/langkit_support.relocatable/langkit_support-generic_api-unparsing.ali
 lib/langkit_support.relocatable/langkit_support-generic_api.ali
 lib/langkit_support.relocatable/langkit_support-generic_bump_ptr.ali
 lib/langkit_support.relocatable/langkit_support-hashes.ali
@@ -101,6 +108,7 @@ lib/langkit_support.relocatable/langkit_support-internal-analysis.ali
 lib/langkit_support.relocatable/langkit_support-internal-conversions.ali
 lib/langkit_support.relocatable/langkit_support-internal-descriptor.ali
 lib/langkit_support.relocatable/langkit_support-internal-introspection.ali
+lib/langkit_support.relocatable/langkit_support-internal-unparsing.ali
 lib/langkit_support.relocatable/langkit_support-internal.ali
 lib/langkit_support.relocatable/langkit_support-iterators.ali
 lib/langkit_support.relocatable/langkit_support-lexical_envs.ali
@@ -123,6 +131,7 @@ lib/langkit_support.static/langkit_support-adalog-debug.ali
 lib/langkit_support.static/langkit_support-adalog-generic_main_support.ali
 lib/langkit_support.static/langkit_support-adalog-logic_var.ali
 lib/langkit_support.static/langkit_support-adalog-main_support.ali
+lib/langkit_support.static/langkit_support-adalog-solver-diagnostics.ali
 lib/langkit_support.static/langkit_support-adalog-solver.ali
 lib/langkit_support.static/langkit_support-adalog-solver_interface.ali
 lib/langkit_support.static/langkit_support-adalog.ali
@@ -137,6 +146,7 @@ lib/langkit_support.static/langkit_support-errors.ali
 lib/langkit_support.static/langkit_support-file_readers.ali
 lib/langkit_support.static/langkit_support-generic_api-analysis.ali
 lib/langkit_support.static/langkit_support-generic_api-introspection.ali
+lib/langkit_support.static/langkit_support-generic_api-unparsing.ali
 lib/langkit_support.static/langkit_support-generic_api.ali
 lib/langkit_support.static/langkit_support-generic_bump_ptr.ali
 lib/langkit_support.static/langkit_support-hashes.ali
@@ -145,6 +155,7 @@ lib/langkit_support.static/langkit_support-internal-analysis.ali
 lib/langkit_support.static/langkit_support-internal-conversions.ali
 lib/langkit_support.static/langkit_support-internal-descriptor.ali
 lib/langkit_support.static/langkit_support-internal-introspection.ali
+lib/langkit_support.static/langkit_support-internal-unparsing.ali
 lib/langkit_support.static/langkit_support-internal.ali
 lib/langkit_support.static/langkit_support-iterators.ali
 lib/langkit_support.static/langkit_support-lexical_envs.ali
@@ -167,6 +178,7 @@ lib/langkit_support.static-pic/langkit_support-adalog-debug.ali
 lib/langkit_support.static-pic/langkit_support-adalog-generic_main_support.ali
 lib/langkit_support.static-pic/langkit_support-adalog-logic_var.ali
 lib/langkit_support.static-pic/langkit_support-adalog-main_support.ali
+lib/langkit_support.static-pic/langkit_support-adalog-solver-diagnostics.ali
 lib/langkit_support.static-pic/langkit_support-adalog-solver.ali
 lib/langkit_support.static-pic/langkit_support-adalog-solver_interface.ali
 lib/langkit_support.static-pic/langkit_support-adalog.ali
@@ -181,6 +193,7 @@ lib/langkit_support.static-pic/langkit_support-errors.ali
 lib/langkit_support.static-pic/langkit_support-file_readers.ali
 lib/langkit_support.static-pic/langkit_support-generic_api-analysis.ali
 lib/langkit_support.static-pic/langkit_support-generic_api-introspection.ali
+lib/langkit_support.static-pic/langkit_support-generic_api-unparsing.ali
 lib/langkit_support.static-pic/langkit_support-generic_api.ali
 lib/langkit_support.static-pic/langkit_support-generic_bump_ptr.ali
 lib/langkit_support.static-pic/langkit_support-hashes.ali
@@ -189,6 +202,7 @@ lib/langkit_support.static-pic/langkit_support-internal-analysis.ali
 lib/langkit_support.static-pic/langkit_support-internal-conversions.ali
 lib/langkit_support.static-pic/langkit_support-internal-descriptor.ali
 lib/langkit_support.static-pic/langkit_support-internal-introspection.ali
+lib/langkit_support.static-pic/langkit_support-internal-unparsing.ali
 lib/langkit_support.static-pic/langkit_support-internal.ali
 lib/langkit_support.static-pic/langkit_support-iterators.ali
 lib/langkit_support.static-pic/langkit_support-lexical_envs.ali

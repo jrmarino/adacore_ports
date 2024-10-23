@@ -1,5 +1,8 @@
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE_TAG]=	v${PORTVERSION}
+# adasat-25.0w-20240408-16385-src.tar.gz
+DEF[SOVERSION]=		25.0.0
+DEF[PORTVERSION]=	${SOVERSION}rc
+# DEF[RELEASE_TAG]=	v${PORTVERSION}
+DEF[RELEASE_TAG]=	01e9a19
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		AdaSAT
@@ -32,10 +35,10 @@ MAKE_ARGS=		BUILD_MODE=dev
 			INSTALL_DIR={{STAGEDIR}}{{PREFIX}}
 BUILD_TARGET=		all-libs
 INSTALL_REQ_TOOLCHAIN=	yes
-SOVERSION=		${PORTVERSION}
+SOVERSION=		${SOVERSION}
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' ${WRKSRC}/adasat.gpr
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${SOVERSION}|' ${WRKSRC}/adasat.gpr
 
 post-install:
 	# remove manifests

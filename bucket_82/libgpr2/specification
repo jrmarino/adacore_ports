@@ -1,5 +1,6 @@
 # gpr2-25.0w-20240409-162B5-src.tar.gz
-DEF[PORTVERSION]=	25.0.0rc
+DEF[SOVERSION]=		25.0.0
+DEF[PORTVERSION]=	${SOVERSION}rc
 # DEF[RELEASE]=		v${PORTVERSION}
 DEF[RELEASE]=		d70c5db
 # ----------------------------------------------------------------------------
@@ -47,10 +48,10 @@ BUILD_TARGET=		build-lib-static
 			build-lib-static-pic
 INSTALL_TARGET=		install-libs
 INSTALL_REQ_TOOLCHAIN=	yes
-SOVERSION=		${PORTVERSION}
+SOVERSION=		${SOVERSION}
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' ${WRKSRC}/gpr2.gpr
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${SOVERSION}|' ${WRKSRC}/gpr2.gpr
 
 post-install:
 	# remove manifests

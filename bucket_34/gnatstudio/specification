@@ -13,11 +13,8 @@ HOMEPAGE=		https://www.adacore.com/gnatpro/toolsuite/gnatstudio
 CONTACT=		John_Marino[draco@marino.st]
 
 DOWNLOAD_GROUPS=	main
-# SITES[main]=		GITHUB/AdaCore:gnatstudio:${RELEASE}
-# DISTFILE[1]=		generated:main
-SITES[main]=		https://github.com/AdaCore/gnatstudio/releases/download/gnatstudio-cr-${PORTVERSION}/
-DISTFILE[1]=		gnatstudio-sources-x86_64-linux.tar.gz:main
-DIST_SUBDIR=		gnatstudio-${PORTVERSION}
+SITES[main]=		GITHUB/AdaCore:gnatstudio:${RELEASE}
+DISTFILE[1]=		generated:main
 
 SPKGS[std]=		set primary docs examples
 
@@ -48,6 +45,7 @@ BUILDRUN_DEPENDS=	gnatcoll-db:sql:std
 			gnatcoll-db:primary:std
 			gnatcoll-bindings:python3:std
 			ada_language_server:primary:std
+			prettier-ada:primary:std
 			gtkada:primary:std
 			python-PyGObject:primary:python_used
 			gmp:primary:std
@@ -73,7 +71,6 @@ BUILD_TARGET=		default
 MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
 			PYTHON_CMD={{PYTHON_CMD}}
 			LIBRARY_TYPE=relocatable
-DISTNAME=		gnatstudio-sources-x86_64-linux
 
 SUB_FILES=		gps
 SUB_LIST=		ADA_PATH={{PREFIX}}/toolchain/ravensys-gcc/bin

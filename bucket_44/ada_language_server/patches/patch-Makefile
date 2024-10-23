@@ -1,4 +1,4 @@
---- Makefile.orig	2023-10-20 00:56:01 UTC
+--- Makefile.orig	2024-05-07 00:55:54 UTC
 +++ Makefile
 @@ -12,12 +12,7 @@ ifeq ($(OS),Windows_NT)
     PYTHON=python.exe
@@ -13,7 +13,7 @@
     PYTHON=python3
     EXE=
  endif
-@@ -98,6 +93,8 @@ all: coverage-instrument
+@@ -97,6 +92,8 @@ all: coverage-instrument
  	$(GPRBUILD) -P gnat/lsp_server.gpr -p $(COVERAGE_BUILD_FLAGS) \
  		-XVERSION=$(VERSION) -XBUILD_DATE=$(BUILD_DATE)
  	$(GPRBUILD) -P gnat/lsp_client.gpr -p $(COVERAGE_BUILD_FLAGS)

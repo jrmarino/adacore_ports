@@ -1,1 +1,2 @@
-lib/libprettier_ada.so.%%SOMAJOR%%
+lib/libprettier_ada.so.%%SOVERSION%%
+lib/prettier_ada/prettier_ada.relocatable/libprettier_ada.so.%%SOVERSION%%

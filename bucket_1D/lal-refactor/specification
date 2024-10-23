@@ -1,5 +1,8 @@
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE]=		v${PORTVERSION}
+# lal-refactor-25.0w-20240505-16130-src.tar.gz
+DEF[SOVERSION]=		25.0.0
+DEF[PORTVERSION]=	${SOVERSION}rc
+# DEF[RELEASE]=		v${PORTVERSION}
+DEF[RELEASE]=		153f060
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		lal-refactor
@@ -40,11 +43,11 @@ MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
 			BUILD_MODE=prod
 BUILD_TARGET=		lib bin
 INSTALL_REQ_TOOLCHAIN=	yes
-SOVERSION=		${PORTVERSION}
+SOVERSION=		${SOVERSION}
 
 pre-configure:
 	# support soname libraries
-	${REINPLACE_CMD} -e 's|@SOVERSION@|${PORTVERSION}|' \
+	${REINPLACE_CMD} -e 's|@SOVERSION@|${SOVERSION}|' \
 		${WRKSRC}/gnat/lal_refactor.gpr
 
 post-install:

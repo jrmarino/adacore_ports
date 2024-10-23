@@ -13,7 +13,6 @@ include/prettier_ada/prettier_ada/prettier_ada-optionals.ads
 include/prettier_ada/prettier_ada/prettier_ada.ads
 lib/libprettier_ada.so
 lib/prettier_ada/prettier_ada.relocatable/libprettier_ada.so
-lib/prettier_ada/prettier_ada.relocatable/libprettier_ada.so.%%SOMAJOR%%
 lib/prettier_ada/prettier_ada.relocatable/prettier_ada-document_vectors.ali
 lib/prettier_ada/prettier_ada.relocatable/prettier_ada-documents-builders.ali
 lib/prettier_ada/prettier_ada.relocatable/prettier_ada-documents-implementation.ali

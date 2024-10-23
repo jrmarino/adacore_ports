@@ -1,7 +1,10 @@
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE]=		v${PORTVERSION}
+# langkit-25.0w-20240411-1627B-src.tar.gz
+DEF[SOVERSION]=		25.0.0
+DEF[PORTVERSION]=	${SOVERSION}rc
+# DEF[RELEASE]=		v${PORTVERSION}
+DEF[RELEASE]=		ba6f6e5
 DEF[BUILD_MODE]=	prod
-DEF[MYDISTNAME]=	langkit-${PORTVERSION}
+DEF[MYDISTNAME]=	langkit-${RELEASE}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		langkit_support
@@ -28,15 +31,18 @@ BUILD_DEPENDS=		python311:single:std
 			gmp:dev:std
 			gnatcoll-bindings:dev:std
 			gnatcoll-core:dev:std
+			prettier-ada:dev:std
 BUILDRUN_DEPENDS=	gnatcoll-core:primary:std
 			gnatcoll-bindings:iconv:std
 			gnatcoll-bindings:gmp:std
 			AdaSAT:primary:std
+			prettier-ada:primary:std
 
 EXRUN[dev]=		AdaSAT:dev:std
 			gnatcoll-bindings:dev:std
 			gnatcoll-core:dev:std
 			gmp:dev:std
+			prettier-ada:dev:std
 
 LICENSE=		APACHE20:primary
 LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
@@ -48,10 +54,10 @@ LICENSE_SCHEME=		solo
 USES=			gprbuild iconv:build
 INSTALL_REQ_TOOLCHAIN=	yes
 DISTNAME=		${MYDISTNAME}
-SOVERSION=		${PORTVERSION}
+SOVERSION=		${SOVERSION}
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' \
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${SOVERSION}|' \
 		${WRKSRC}/langkit/support/langkit_support.gpr
 
 do-build:
