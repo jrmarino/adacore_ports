@@ -1,5 +1,7 @@
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE]=		v${PORTVERSION}
+# gpr2-25.0w-20240409-162B5-src.tar.gz
+DEF[PORTVERSION]=	25.0.0rc
+# DEF[RELEASE]=		v${PORTVERSION}
+DEF[RELEASE]=		d70c5db
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		libgpr2
@@ -22,7 +24,7 @@ OPTIONS_STANDARD=	none
 FPC_EQUIVALENT=		devel/libgpr
 
 LICENSE=		APACHE20:primary
-LICENSE_FILE=		APACHE20:{{WRKSRC}}/LICENSE
+LICENSE_FILE=		APACHE20:{{WRKSRC}}/LICENSE-lib
 LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
 LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/lib/gpr2.ads
 LICENSE_AWK=		TERMS:"^$$"

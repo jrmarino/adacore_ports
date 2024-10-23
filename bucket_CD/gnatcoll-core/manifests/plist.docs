@@ -32,6 +32,7 @@ share/doc/gnatcoll/html/_images/important.png
 share/doc/gnatcoll/html/_images/note.png
 share/doc/gnatcoll/html/_images/tip.png
 share/doc/gnatcoll/html/_static/_sphinx_javascript_frameworks_compat.js
+share/doc/gnatcoll/html/_static/adacore-logo-white.png
 share/doc/gnatcoll/html/_static/basic.css
 share/doc/gnatcoll/html/_static/doctools.js
 share/doc/gnatcoll/html/_static/documentation_options.js
@@ -90,3 +91,8 @@ share/doc/gnatcoll/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2
 share/doc/gnatcoll/html/_static/js/badge_only.js
 share/doc/gnatcoll/html/_static/js/theme.js
 share/doc/gnatcoll/html/_static/js/versions.js
+share/examples/gnatcoll/coders/base64-demo
+share/examples/gnatcoll/coders/base64_coder.adb
+share/examples/gnatcoll/coders/base64_coder.gpr
+share/examples/gnatcoll/projects/gpr_sources.adb
+share/examples/gnatcoll/projects/gpr_sources.gpr

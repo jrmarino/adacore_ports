@@ -1,5 +1,7 @@
-DEF[PORTVERSION]=	24.0.0
-DEF[RELEASE]=		v${PORTVERSION}
+# libadalang-25.0w-20240411-16289-src.tar.gz
+DEF[PORTVERSION]=	25.0.0rc
+DEF[RELEASE]=		307649c
+# DEF[RELEASE]=		v${PORTVERSION}
 DEF[GNARL]=		"-lgnarl","-Wl,-rpath,{{PREFIX}}/lib"
 # ------------------------------------------------------------------------
 
@@ -31,9 +33,11 @@ LICENSE_SCHEME=		solo
 
 BUILD_DEPENDS=		langkit_support:dev:std
 			libgpr2:dev:std
+			prettier-ada:dev:std
 BUILDRUN_DEPENDS=	langkit:single:std
 			libgpr2:primary:std
 			gnatcoll-bindings:gmp:std
+			prettier-ada:primary:std
 
 EXRUN[tools]=		primary
 EXRUN[dev]=		libgpr2:dev:std

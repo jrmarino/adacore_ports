@@ -1,0 +1,20 @@
+--- Makefile.orig	2024-03-14 08:54:15 UTC
++++ Makefile
+@@ -52,7 +52,7 @@ install-lib:
+ 			-XPRETTIER_ADA_LIBRARY_TYPE=$$library_type \
+ 			-XLIBRARY_TYPE=$$library_type \
+ 			-XPRETTIER_ADA_BUILD_MODE=$(BUILD_MODE) \
+-			--prefix="$(PREFIX)" \
++			--prefix="$(DESTDIR)$(PREFIX)" \
+ 			--install-name=prettier_ada \
+ 			--sources-subdir=include/prettier_ada \
+ 			--build-name=$$library_type \
+@@ -78,7 +78,7 @@ install-test-programs:
+ 		-XLIBRARY_TYPE=static \
+ 		-XPRETTIER_ADA_LIBRARY_TYPE=static \
+ 		-XPRETTIER_ADA_BUILD_MODE=$(BUILD_MODE) \
+-		--prefix="$(PREFIX)" \
++		--prefix="$(DESTDIR)$(PREFIX)" \
+ 		--install-name=test_programs \
+ 		--mode=usage \
+ 		-P$(TEST_PROGRAMS) \
