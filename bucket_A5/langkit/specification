@@ -1,7 +1,5 @@
-# langkit-25.0w-20240411-1627B-src.tar.gz
-DEF[PORTVERSION]=	25.0.0rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		ba6f6e5
+DEF[PORTVERSION]=	25.0.0
+DEF[RELEASE]=		v${PORTVERSION}
 # ------------------------------------------------------------------------
 
 NAMEBASE=		langkit
