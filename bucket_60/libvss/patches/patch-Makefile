@@ -1,4 +1,4 @@
---- Makefile.orig	2024-04-03 12:39:23 UTC
+--- Makefile.orig	2024-08-30 15:26:54 UTC
 +++ Makefile
 @@ -24,6 +24,7 @@ INSTALL_ALI_DIR        ?= $(INSTALL_LIBR
  

@@ -1,8 +1,6 @@
-# vss-25.0w-20240408-1642F-src.tar.gz
 DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		d10cb15
+DEF[PORTVERSION]=	${SOVERSION}
+DEF[RELEASE]=		v${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		libvss
