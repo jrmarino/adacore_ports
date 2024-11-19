@@ -1,8 +1,6 @@
-# adasat-25.0w-20240408-16385-src.tar.gz
 DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-# DEF[RELEASE_TAG]=	v${PORTVERSION}
-DEF[RELEASE_TAG]=	01e9a19
+DEF[PORTVERSION]=	${SOVERSION}
+DEF[RELEASE_TAG]=	v${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		AdaSAT
