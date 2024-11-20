@@ -34,12 +34,18 @@ case "$name" in
 		component_lower="syslog"
 		linker_opts=
 		;;
-	"python")
+	"python3")
 		name=python3
 		component=Python
 		component_upper=PYTHON
-		component_lower="python"
+		component_lower="python3"
 		linker_opts="${python3_linking}"
+		;;
+	"zlib")
+		component=Zlib
+		component_upper=ZLIB
+		component_lower="zlib"
+		linker_opts="-lz"
 		;;
 	*)
 		echo "Illegal component $component"
