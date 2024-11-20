@@ -1,6 +1,6 @@
---- Makefile.orig	2024-04-09 07:50:47 UTC
+--- Makefile.orig	2024-10-16 10:31:33 UTC
 +++ Makefile
-@@ -40,17 +40,7 @@
+@@ -42,17 +42,7 @@
  #                   project or use an installed one. (yes/no)
  #   GPR2KBDIR     : path to the gprconfig_kb repository
  
@@ -19,3 +19,12 @@
  
  # Load current setup if any
  -include makefile.setup
+@@ -139,7 +129,7 @@ GPR_OPTIONS := -XGPR2_BUILD=${GPR2_BUILD
+ BUILDER     := gprbuild -p -j${PROCESSORS} ${GPR_OPTIONS} \
+                ${GPRBUILD_OPTIONS} -XPROFILER=${PROFILER} \
+                ${COVERAGE_BUILD_FLAGS}
+-INSTALLER   := gprinstall -p -f ${GPR_OPTIONS} --prefix='${prefix}'
++INSTALLER   := gprinstall -p -f ${GPR_OPTIONS} --prefix='${prefix}' --no-manifests
+ CLEANER     := gprclean -eL -p ${RBD} -XGPR2_BUILD=${GPR2_BUILD} \
+                -XBUILD_ROOT="${CURDIR}/${BUILD_ROOT}"
+ UNINSTALLER := ${INSTALLER} -p -f --uninstall

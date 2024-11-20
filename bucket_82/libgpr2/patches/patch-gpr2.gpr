@@ -1,6 +1,6 @@
---- gpr2.gpr.orig	2024-04-09 07:50:47 UTC
+--- gpr2.gpr.orig	2024-10-16 10:31:33 UTC
 +++ gpr2.gpr
-@@ -19,6 +19,7 @@ library project GPR2 extends "shared.gpr
+@@ -22,6 +22,7 @@ library project GPR2 extends "shared.gpr
                          Build_Root & "/kb",
                          "langkit/gen/src");
     for Library_Name use "gpr2";
