@@ -1,10 +1,7 @@
-# langkit-25.0w-20240411-1627B-src.tar.gz
-DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		ba6f6e5
+DEF[PORTVERSION]=	25.0.0
+DEF[RELEASE]=		v${PORTVERSION}
 DEF[BUILD_MODE]=	prod
-DEF[MYDISTNAME]=	langkit-${RELEASE}
+DEF[MYDISTNAME]=	langkit-${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		langkit_support
@@ -25,8 +22,8 @@ SPKGS[std]=		set primary dev
 OPTIONS_AVAILABLE=	none
 OPTIONS_STANDARD=	none
 
-BUILD_DEPENDS=		python311:single:std
-			python-e3-core:single:v11
+BUILD_DEPENDS=		python312:primary:std
+			python-e3-core:single:v12
 			AdaSAT:dev:std
 			gmp:dev:std
 			gnatcoll-bindings:dev:std
@@ -37,7 +34,6 @@ BUILDRUN_DEPENDS=	gnatcoll-core:primary:std
 			gnatcoll-bindings:gmp:std
 			AdaSAT:primary:std
 			prettier-ada:primary:std
-
 EXRUN[dev]=		AdaSAT:dev:std
 			gnatcoll-bindings:dev:std
 			gnatcoll-core:dev:std
@@ -54,10 +50,10 @@ LICENSE_SCHEME=		solo
 USES=			gprbuild iconv:build
 INSTALL_REQ_TOOLCHAIN=	yes
 DISTNAME=		${MYDISTNAME}
-SOVERSION=		${SOVERSION}
+SOVERSION=		${PORTVERSION}
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${SOVERSION}|' \
+	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${PORTVERSION}|' \
 		${WRKSRC}/langkit/support/langkit_support.gpr
 
 do-build:
