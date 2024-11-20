@@ -1,7 +1,6 @@
-# prettier-ada-25.0w-20240408-16284-src.tar.gz
 DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-DEF[RELEASE]=		dd71a76
+DEF[PORTVERSION]=	${SOVERSION}
+DEF[RELEASE]=		v${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		prettier-ada
@@ -30,6 +29,7 @@ EXRUN[dev]=		libvss:dev:std
 
 USES=			gmake gprbuild
 INSTALL_REQ_TOOLCHAIN=	yes
+INSTALL_TARGET=		install-all
 MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
 			BUILD_MODE=prod
 SOVERSION=		${SOVERSION}
@@ -40,5 +40,4 @@ pre-configure:
 		${WRKSRC}/prettier_ada.gpr
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so
