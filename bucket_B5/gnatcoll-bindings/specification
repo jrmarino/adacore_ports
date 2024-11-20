@@ -1,6 +1,6 @@
 DEF[PORTVERSION]=	25.0.0
 DEF[RELEASE]=		v${PORTVERSION}
-DEF[COMPONENTS]=	gmp iconv readline syslog zlib python3
+DEF[COMPONENTS]=	gmp iconv readline syslog zlib lzma cpp python3
 DEF[SOVERSION]=		25.0
 DEF[LIBTYPES]=		static static-pic relocatable
 DEF[PY3DEFAULT]=	EXTRACT_VERSION(PYTHON3_DEFAULT)
@@ -21,7 +21,7 @@ DOWNLOAD_GROUPS=	main
 SITES[main]=		GITHUB/AdaCore:gnatcoll-bindings:${RELEASE}
 DISTFILE[1]=		generated:main
 
-SPKGS[std]=		set gmp iconv python3 readline syslog zlib examples dev
+SPKGS[std]=		set gmp iconv python3 readline syslog zlib lzma cpp dev
 
 OPTIONS_AVAILABLE=	none
 OPTIONS_STANDARD=	none
@@ -44,7 +44,15 @@ BUILD_DEPENDS=		gmp:dev:std
 			gnatcoll-core:primary:std
 			zlib:dev:std
 			zlib:primary:std
+			xz:dev:std
+			xz:primary:std
 
+# zstd added after the 25.0.0 release
+# #			zstd:dev:std
+# #			zstd:primary:std
+
+EXRUN[syslog]=		gnatcoll-core:primary:std
+EXRUN[cpp]=		gnatcoll-core:primary:std
 EXRUN[gmp]=		gmp:primary:std
 			gnatcoll-core:primary:std
 EXRUN[iconv]=		libiconv:primary:std
@@ -55,6 +63,11 @@ EXRUN[python3]=		python${THIRD_SNAKE}:primary:std
 			gnatcoll-core:primary:std
 EXRUN[zlib]=		zlib:primary:std
 			gnatcoll-core:primary:std
+EXRUN[lzma]=		xz:primary:std
+			gnatcoll-core:primary:std
+
+# EXRUN[zstd]=		zstd:primary:std
+# #			gnatcoll-core:primary:std
 
 USES=			gprbuild gmake iconv:build
 MAKE_ENV=		BUILD=PROD

@@ -47,6 +47,24 @@ case "$name" in
 		component_lower="zlib"
 		linker_opts="-lz"
 		;;
+	"zstd")
+		component=ZStd
+		component_upper=ZSTD
+		component_lower="zstd"
+		linker_opts="-lzstd"
+		;;
+	"lzma")
+		component=LZMA
+		component_upper=LZMA
+		component_lower="lzma"
+		linker_opts="-llzma"
+		;;
+	"cpp")
+		component=C++
+		component_upper=CPP
+		component_lower="cpp"
+		linker_opts=
+		;;
 	*)
 		echo "Illegal component $component"
 		exit 1
