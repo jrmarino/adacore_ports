@@ -1,8 +1,6 @@
-# gnatcoll-core-25.0w-20240408-16118-src
-DEF[PORTVERSION]=	25.0.0rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		1b0ad29
-DEF[SOVERSION]=		0.0
+DEF[PORTVERSION]=	25.0.0
+DEF[RELEASE]=		v${PORTVERSION}
+DEF[SOVERSION]=		25.0
 DEF[JQUERY]=		EXTRACT_INFO(LATEST_JQUERY)
 DEF[UNDERSCORE]=	EXTRACT_INFO(SPHINX_UNDERSCORE)
 # ----------------------------------------------------------------------------
@@ -29,13 +27,14 @@ LICENSE=		GPLv3+:primary
 LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
 LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
 LICENSE_AWK=		TERMS:"^$$"
-LICENSE_SOURCE=		TERMS:{{WRKSRC}}/src/gnatcoll.ads
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/minimal/src/gnatcoll.ads
 LICENSE_SCHEME=		solo
 
 BUILD_DEPENDS=		python-Sphinx:single:python_default
 			python-sphinx-rtd-theme:single:python_default
 			xmlada:dev:std
 			gprbuild:dev:std
+			rsync:primary:std
 BUILDRUN_DEPENDS=	xmlada:primary:std
 			gprbuild:gprlib:std
 
@@ -62,15 +61,13 @@ pre-configure:
 	${REINPLACE_CMD} \
 		-e 's|@PREFIX@|${PREFIX}|' \
 		-e 's|@DYNLINK@|${DYNLINK}|' \
-		${WRKSRC}/gnatcoll_core.gpr
-
-do-configure:
-	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} setup)
+		${WRKSRC}/core/gnatcoll_core.gpr
 
 pre-build:
 	(cd ${BUILD_WRKSRC}/docs && ${DO_MAKE_BUILD} html)
 
 post-install:
-	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
-	${RM} -r ${STAGEDIR}${PREFIX}/share/doc/gnatcoll/html/_sources
+	${MKDIR} ${STAGEDIR}${STD_DOCDIR}
+	(cd ${WRKSRC}/docs/_build && ${COPYTREE_SHARE} . ${STAGEDIR}${STD_DOCDIR})
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgnatcoll_*.so
+	${RM} -r ${STAGEDIR}${PREFIX}/share/gpr/manifests
