@@ -115,6 +115,7 @@ include/lal_tools/tgen-dependency_graph.adb
 include/lal_tools/tgen-dependency_graph.ads
 include/lal_tools/tgen-files.adb
 include/lal_tools/tgen-files.ads
+include/lal_tools/tgen-instr_support.adb
 include/lal_tools/tgen-instr_support.ads
 include/lal_tools/tgen-json-unparse.adb
 include/lal_tools/tgen-json-unparse.ads

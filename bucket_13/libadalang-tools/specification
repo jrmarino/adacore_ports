@@ -1,8 +1,6 @@
-# libadalang-tools-25.0w-20240408-1625A-src.tar.gz
 DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		2ee2dbc
+DEF[PORTVERSION]=	${SOVERSION}
+DEF[RELEASE]=		v${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		libadalang-tools
