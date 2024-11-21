@@ -1,8 +1,6 @@
-# lal-refactor-25.0w-20240505-16130-src.tar.gz
 DEF[SOVERSION]=		25.0.0
-DEF[PORTVERSION]=	${SOVERSION}rc
-# DEF[RELEASE]=		v${PORTVERSION}
-DEF[RELEASE]=		153f060
+DEF[PORTVERSION]=	${SOVERSION}
+DEF[RELEASE]=		v${PORTVERSION}
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		lal-refactor
