@@ -21,8 +21,8 @@ Update order:
 16. langkit_support
 17. libgpr2
 18. libadalang
-19. ~gpr_unit_provider~ (to be dropped)
-20. gnatdoc
+19. gnatdoc
+20. gnatformat
 21. libadalang_tools
 22. lal_refactor
 23. ada_language_server
