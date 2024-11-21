@@ -27,4 +27,5 @@ LICENSE_AWK=		TERMS:"^$$"
 LICENSE_SOURCE=		TERMS:{{WRKSRC}}/langkit/support/langkit_support.ads
 LICENSE_SCHEME=		solo
 
-USES=			python:pep517
+USES=			python:pep517 shebangfix
+SHEBANG_FILES=		langkit/templates/python_api/playground_py.mako
