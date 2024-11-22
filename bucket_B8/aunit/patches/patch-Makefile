@@ -1,0 +1,19 @@
+--- Makefile.orig	2024-03-12 14:51:41 UTC
++++ Makefile
+@@ -4,7 +4,7 @@ GPRBUILD  = gprbuild
+ GPRCLEAN = gprclean
+ GPRINSTALL = gprinstall
+ 
+-INSTALL:=$(shell exec=`which gprbuild`;if [ ! -x "$$exec" ]; then unset exec;fi;echo $$exec | sed -e 's/\/bin\/$(GPRBUILD).*//')
++INSTALL:=$(DESTDIR)$(PREFIX)
+ 
+ ifeq ($(RTS),)
+    RTS=full
+@@ -63,6 +63,7 @@ endif
+ 
+ install: install-clean
+ 	$(GPRINSTALL) $(GPROPTS) -p -f --prefix=$(INSTALL) \
++		--no-manifests \
+ 		--no-build-var lib/gnat/aunit.gpr
+ 
+ .PHONY: doc

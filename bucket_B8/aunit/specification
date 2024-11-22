@@ -1,0 +1,39 @@
+DEF[PORTVERSION]=	25.0.0
+DEF[RELEASE]=		v${PORTVERSION}
+DEF[JQUERY]=		EXTRACT_INFO(LATEST_JQUERY)
+DEF[UNDERSCORE]=	EXTRACT_INFO(SPHINX_UNDERSCORE)
+# ----------------------------------------------------------------------------
+
+NAMEBASE=		aunit
+VERSION=		${PORTVERSION}
+EPOCH=			1
+KEYWORDS=		devel ada
+VARIANTS=		std
+SDESC[std]=		Ada unit testing framework
+HOMEPAGE=		https://github.com/adacore/aunit
+CONTACT=		John_Marino[draco@marino.st]
+
+DOWNLOAD_GROUPS=	main
+SITES[main]=		GITHUB/AdaCore:aunit:${RELEASE}
+DISTFILE[1]=		generated:main
+
+SPKGS[std]=		set primary dev examples
+
+OPTIONS_AVAILABLE=	none
+OPTIONS_STANDARD=	none
+
+LICENSE=		GPLv3+:primary
+LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
+LICENSE_TERMS=		primary:{{WRKDIR}}/TERMS
+LICENSE_AWK=		TERMS:"^$$"
+LICENSE_SOURCE=		TERMS:{{WRKSRC}}/include/aunit/framework/aunit.ads
+LICENSE_SCHEME=		solo
+
+USES=			ada:primary gmake gprbuild
+INSTALL_REQ_TOOLCHAIN=	yes
+PLIST_SUB=		JQUERY=${JQUERY}
+			UNDERSCORE=${UNDERSCORE}
+
+pre-configure:
+	${REINPLACE_CMD} -e 's|LIBDIR|MYLIBDIR|' \
+		${WRKSRC}/lib/gnat/aunit_shared.gpr
