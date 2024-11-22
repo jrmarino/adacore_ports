@@ -186,7 +186,7 @@ share/gpr/gnatcoll_cpp.gpr
 share/gpr/gnatcoll_gmp.gpr
 share/gpr/gnatcoll_iconv.gpr
 share/gpr/gnatcoll_lzma.gpr
-share/gpr/gnatcoll_python3.gpr
+share/gpr/gnatcoll_python.gpr
 share/gpr/gnatcoll_readline.gpr
 share/gpr/gnatcoll_syslog.gpr
 share/gpr/gnatcoll_zlib.gpr
