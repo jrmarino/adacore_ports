@@ -1,7 +1,8 @@
-DEF[PORTVERSION]=	20240506
-DEF[RELEASE]=		gnatstudio-cr-${PORTVERSION}
+DEF[PORTVERSION]=	20241101
+# DEF[RELEASE]=		gnatstudio-cr-${PORTVERSION}
+DEF[RELEASE]=		21c081c
 DEF[VERSION_TXT]=	Continuous Release ${PORTVERSION}
-DEF[DATE_TXT]=		6 May 2024
+DEF[DATE_TXT]=		1 November 2024
 # ----------------------------------------------------------------------------
 
 NAMEBASE=		gnatstudio
@@ -61,6 +62,7 @@ EXRUN[primary]=		ravensys-gcc:compilers:std
 
 USES=			gprbuild:buildrun gmake pkgconfig zlib
 			python perl:build shebangfix iconv fontconfig
+			gettext:build
 XORG_COMPONENTS=	x11
 GNOME_COMPONENTS=	gtk3 cairo gdkpixbuf
 
@@ -71,7 +73,7 @@ BUILD_TARGET=		default
 MAKE_ARGS=		PROCESSORS={{MAKE_JOBS_NUMBER}}
 			PYTHON_CMD={{PYTHON_CMD}}
 			LIBRARY_TYPE=relocatable
-
+MAKE_ENV=		GPR_PROJECT_PATH={{LOCALBASE}}/share/gpr
 SUB_FILES=		gps
 SUB_LIST=		ADA_PATH={{PREFIX}}/toolchain/ravensys-gcc/bin
 SHEBANG_FILES=		share/support/core/gs_utils/internal/dialogs.py
