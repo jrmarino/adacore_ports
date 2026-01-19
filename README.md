@@ -9,7 +9,8 @@ Update order:
 4. aunit
 5. adasat
 6. templates_parser
-7. libvss
+7. a) vss-text
+7. b) vss-extra
 8. markdown
 9. gtkada
 10. ada_spawn
@@ -30,3 +31,6 @@ Update order:
 25. aws
 26. gpr2tools
 27. gnatstudio
+
+Dropped due to deprecation:
+libvss (replaced with vss-text and vss-extra)
