@@ -11,7 +11,7 @@ Update order:
 6. templates_parser
 7. a) vss-text
 7. b) vss-extra
-8. markdown
+8. ada-markdown
 9. gtkada
 10. ada_spawn
 11. gnatcoll_core
