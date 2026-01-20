@@ -8,7 +8,15 @@
  
     for Object_Dir use Build_Root & "/" & Build & "/obj-" & Library_Type;
     for Library_Dir use Build_Root & "/" & Build & "/lib-" & Library_Type;
-@@ -67,6 +68,7 @@ library project GPR2 extends "gpr2_share
+@@ -51,6 +52,7 @@ library project GPR2 extends "gpr2_share
+             "GPR2.Build.External_Options",
+             "GPR2.Build.Jobserver",
+             "GPR2.Build.Jobserver_Protocol",
++            "GPR2.Build.Jobserver_Protocol.Pipe",
+             "GPR2.Build.Jobserver_Protocol.Semaphore",
+             "GPR2.Build.Options",
+             "GPR2.Build.Process_Manager",
+@@ -67,6 +69,7 @@ library project GPR2 extends "gpr2_share
              "GPR2.Build.Unit_Info.List",
              "GPR2.Build.View_Db",
              "GPR2.Build.View_Tables",
@@ -16,7 +24,7 @@
              "GPR2.Configuration_Internal",
              "GPR2.Containers",
              "GPR2.Context",
-@@ -121,6 +123,7 @@ library project GPR2 extends "gpr2_share
+@@ -121,6 +124,7 @@ library project GPR2 extends "gpr2_share
              "GPR2.Source_Reference.Text_Value",
              "GPR2.Source_Reference.Value",
              "GPR2.Tree_Internal",
@@ -24,3 +32,11 @@
              "GPR2.Tree_Internal.View_Builder",
              "GPR2.Utils",
              "GPR2.Utils.Hash",
+@@ -142,6 +146,7 @@ library project GPR2 extends "gpr2_share
+             "GPR_Parser.Lexer_Implementation",
+             "GPR_Parser.Parsers",
+             "GPR_Parser.Private_Converters",
++            "Gpr_Parser.Public_Converters",
+             "GPR_Parser.Rewriting",
+             "GPR_Parser_Adasat",
+             "GPR_Parser_Adasat.Builders",

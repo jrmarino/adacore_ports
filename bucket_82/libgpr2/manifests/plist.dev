@@ -31,6 +31,8 @@ include/gpr2.relocatable/gpr2-build-external_options.adb
 include/gpr2.relocatable/gpr2-build-external_options.ads
 include/gpr2.relocatable/gpr2-build-jobserver.adb
 include/gpr2.relocatable/gpr2-build-jobserver.ads
+include/gpr2.relocatable/gpr2-build-jobserver_protocol-pipe.adb
+include/gpr2.relocatable/gpr2-build-jobserver_protocol-pipe.ads
 include/gpr2.relocatable/gpr2-build-jobserver_protocol-semaphore.ads
 include/gpr2.relocatable/gpr2-build-jobserver_protocol-semaphore__dummy.adb
 include/gpr2.relocatable/gpr2-build-jobserver_protocol.ads
@@ -196,6 +198,8 @@ include/gpr2.relocatable/gpr_parser-parsers.adb
 include/gpr2.relocatable/gpr_parser-parsers.ads
 include/gpr2.relocatable/gpr_parser-private_converters.adb
 include/gpr2.relocatable/gpr_parser-private_converters.ads
+include/gpr2.relocatable/gpr_parser-public_converters.adb
+include/gpr2.relocatable/gpr_parser-public_converters.ads
 include/gpr2.relocatable/gpr_parser-rewriting.adb
 include/gpr2.relocatable/gpr_parser-rewriting.ads
 include/gpr2.relocatable/gpr_parser.ads
@@ -985,6 +989,7 @@ lib/gpr2.relocatable/gpr2-build-compilation_unit-maps.ali
 lib/gpr2.relocatable/gpr2-build-compilation_unit.ali
 lib/gpr2.relocatable/gpr2-build-external_options.ali
 lib/gpr2.relocatable/gpr2-build-jobserver.ali
+lib/gpr2.relocatable/gpr2-build-jobserver_protocol-pipe.ali
 lib/gpr2.relocatable/gpr2-build-jobserver_protocol-semaphore__dummy.ali
 lib/gpr2.relocatable/gpr2-build-jobserver_protocol.ali
 lib/gpr2.relocatable/gpr2-build-options.ali
@@ -1078,6 +1083,7 @@ lib/gpr2.relocatable/gpr_parser-implementation.ali
 lib/gpr2.relocatable/gpr_parser-lexer_implementation.ali
 lib/gpr2.relocatable/gpr_parser-parsers.ali
 lib/gpr2.relocatable/gpr_parser-private_converters.ali
+lib/gpr2.relocatable/gpr_parser-public_converters.ali
 lib/gpr2.relocatable/gpr_parser-rewriting.ali
 lib/gpr2.relocatable/gpr_parser.ali
 lib/gpr2.relocatable/gpr_parser_adasat-builders.ali
