@@ -59,6 +59,7 @@ include/gpr2.relocatable/gpr2-build-unit_info.adb
 include/gpr2.relocatable/gpr2-build-unit_info.ads
 include/gpr2.relocatable/gpr2-build-view_db.adb
 include/gpr2.relocatable/gpr2-build-view_db.ads
+include/gpr2.relocatable/gpr2-build-view_tables-update_sources_list.adb
 include/gpr2.relocatable/gpr2-build-view_tables.adb
 include/gpr2.relocatable/gpr2-build-view_tables.ads
 include/gpr2.relocatable/gpr2-build.ads
@@ -155,6 +156,7 @@ include/gpr2.relocatable/gpr2-source_reference-text_value.ads
 include/gpr2.relocatable/gpr2-source_reference-value.ads
 include/gpr2.relocatable/gpr2-source_reference.adb
 include/gpr2.relocatable/gpr2-source_reference.ads
+include/gpr2.relocatable/gpr2-tree_internal-load_autoconf.adb
 include/gpr2.relocatable/gpr2-tree_internal-view_builder.adb
 include/gpr2.relocatable/gpr2-tree_internal-view_builder.ads
 include/gpr2.relocatable/gpr2-tree_internal.adb
