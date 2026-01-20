@@ -1,7 +1,7 @@
 # adacore_ports
 This is kindness tree to add in the annual updates of AdaCore ports for Raven
 
-Update order:
+### Update order:
 
 1. langkit
 1. xmlada
@@ -32,5 +32,6 @@ Update order:
 1. gpr2tools
 1. gnatstudio
 
-Dropped due to deprecation:
-libvss (replaced with vss-text and vss-extra)
+### Dropped due to deprecation:
+
+- libvss (replaced with vss-text and vss-extra)
