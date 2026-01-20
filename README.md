@@ -25,7 +25,7 @@ This is kindness tree to add in the annual updates of AdaCore ports for Raven
 1. libadalang
 1. gnatdoc
 1. gnatformat
-1. libadalang_tools
+1. libadalang-tools
 1. lal_refactor
 1. ada_language_server
 1. aws
