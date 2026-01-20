@@ -38,6 +38,8 @@ INSTALL_TARGET=		install-all-libs
 INSTALL_REQ_TOOLCHAIN=	yes
 SOVERSION=		${SOVERSION}
 
+BROKEN[all]=		use vss-text and vss-extra instead
+
 pre-configure:
 	# Set library versions
 	${REINPLACE_CMD} -e 's|%%SOVERSION%%|${SOVERSION}|' ${WRKSRC}/gnat/vss*.gpr
