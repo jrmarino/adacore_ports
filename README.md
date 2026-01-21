@@ -7,6 +7,7 @@ This is kindness tree to add in the annual updates of AdaCore ports for Raven
 1. xmlada
 1. gprbuild
 1. aunit
+1. libxdiff_ada
 1. adasat
 1. templates_parser
 1. vss-text
