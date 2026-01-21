@@ -7,6 +7,7 @@ DEF[DATE_TXT]=		1 November 2024
 
 NAMEBASE=		gnatstudio
 VERSION=		${PORTVERSION}
+REVISION=		1
 KEYWORDS=		devel
 VARIANTS=		std
 SDESC[std]=		Multilanguage IDE for Ada, SPARK, C/C++, and more
@@ -21,6 +22,7 @@ SPKGS[std]=		set primary docs examples
 
 OPTIONS_AVAILABLE=	DEBUG
 OPTIONS_STANDARD=	DEBUG
+OPT_ON[all]=		DEBUG
 
 LICENSE=		GPLv3+:primary
 LICENSE_FILE=		GPLv3+:{{WRKSRC}}/COPYING3
@@ -61,8 +63,8 @@ EXRUN[primary]=		ravensys-gcc:compilers:std
 			ravensys-binutils:single:std
 
 USES=			gprbuild:buildrun gmake pkgconfig zlib
-			python perl:build shebangfix iconv fontconfig
-			gettext:build
+			python perl:build shebangfix iconv:standalone
+			fontconfig gettext:build
 XORG_COMPONENTS=	x11
 GNOME_COMPONENTS=	gtk3 cairo gdkpixbuf
 
